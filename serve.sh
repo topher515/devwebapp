@@ -1,1 +1,0 @@
-docker run -P -v $(pwd)/app:/opt/app -t -i topher515/devwebapp:latest python runserver.py

@@ -1,0 +1,24 @@
+web:
+  build: devserver
+  command: python runserver.py
+  links:
+   - db
+  ports:
+   - "8000:8000"
+  volumes:
+   - ./app:/app
+
+gulp:
+  build: pipeline
+  command: node_modules/.bin/gulp --gulpfile /app/gulpfile.js
+  volumes:
+   - ./app:/app
+
+bower:
+  build: pipeline
+  command: bower install
+  volumes:
+   - ./app:/app
+
+db:
+  image: postgres
