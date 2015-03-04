@@ -28,7 +28,6 @@ RUN npm install -g bower
 
 ADD gulpfile.js /opt/gulpfile.js
 ADD bower.json /opt/bower.json
-#ADD .bowerrc /opt/.bowerrc
-
+ADD .bowerrc /opt/.bowerrc
 
 VOLUME ["/opt/app"]
