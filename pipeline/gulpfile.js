@@ -3,7 +3,7 @@ var coffee = require('gulp-coffee');
 var concat = require('gulp-concat');
 var less = require('gulp-less');
 // var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin');
+// var imagemin = require('gulp-imagemin');
 // var sourcemaps = require('gulp-sourcemaps');
 var del = require('del');
 
@@ -42,7 +42,7 @@ gulp.task('dev-less', function() {
 gulp.task('dev-images', ['clean'], function() {
   return gulp.src(paths.images)
     // Pass in options to the task
-    .pipe(imagemin({optimizationLevel: 5}))
+    // .pipe(imagemin({optimizationLevel: 5}))
     .pipe(gulp.dest('build/img'));
 });
 

@@ -6,19 +6,19 @@ web:
   ports:
    - "8000:8000"
   volumes:
-   - ./app:/app
+   - ./app:/opt/app
 
 gulp:
   build: pipeline
-  command: node_modules/.bin/gulp --gulpfile /app/gulpfile.js
+  command: node_modules/.bin/gulp --gulpfile /opt/gulpfile.js
   volumes:
-   - ./app:/app
+   - ./app:/opt/app
 
 bower:
   build: pipeline
-  command: bower install
+  command: bower --allow-root install
   volumes:
-   - ./app:/app
+   - ./app:/opt/app
 
 db:
   image: postgres

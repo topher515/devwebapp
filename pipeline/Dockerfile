@@ -8,7 +8,7 @@ WORKDIR /opt/
 RUN apt-get update
 
 # Install Node/NPM
-RUN apt-get -y install curl
+RUN apt-get -y install curl 
 RUN curl -sL https://deb.nodesource.com/setup | bash -
 RUN apt-get -y install nodejs npm
 
@@ -20,9 +20,15 @@ RUN npm install gulp-less
 RUN npm install gulp-concat
 RUN npm install gulp-coffee
 # RUN npm install gulp-imagemin
-# RUN npm install del
+RUN npm install del
 
 # Install Bower
 RUN npm install -g bower
+
+ADD gulpfile.js /opt/gulpfile.js
+ADD bower.json /opt/bower.json
+ADD .bowerrc /opt/.bowerrc
+
+RUN apt-get -y install git
 
 VOLUME ["/opt/app"]

@@ -12,7 +12,6 @@ RUN apt-get -y install python python-dev python-pip build-essential git
 # Web app
 RUN pip install Flask sqlalchemy
 
-
 VOLUME ["/opt/app"]
 
 EXPOSE 8000 8080
