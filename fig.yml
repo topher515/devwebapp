@@ -1,3 +1,11 @@
+static:
+  build: devstatic
+  ports:
+   - "8001:8001"
+  volumes:
+   - ./devstatic/sites-enabled/:/etc/nginx/sites-enabled
+   - ./app:/opt/app
+
 web:
   build: devserver
   command: python runserver.py
