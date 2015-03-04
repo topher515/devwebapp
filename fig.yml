@@ -16,7 +16,7 @@ gulp:
 
 bower:
   build: pipeline
-  command: bower --allow-root install
+  command: bower --allow-root install --config.interactive=false
   volumes:
    - ./app:/opt/app
 
