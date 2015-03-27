@@ -4,7 +4,7 @@ static:
    - "8001:8001"
   volumes:
    - ./devstatic/sites-enabled/:/etc/nginx/sites-enabled
-   - ./app:/opt/app
+   - ./src:/opt/src
 
 web:
   build: devserver
@@ -14,19 +14,19 @@ web:
   ports:
    - "8000:8000"
   volumes:
-   - ./app:/opt/app
+   - ./src:/opt/src
 
 gulp:
   build: pipeline
-  command: node_modules/.bin/gulp --gulpfile /opt/gulpfile.js
+  command: node_modules/.bin/gulp --gulpfile /opt/gulpfile.js serve
   volumes:
-   - ./app:/opt/app
+   - ./src:/opt/src
 
 bower:
   build: pipeline
   command: bower --allow-root install --config.interactive=false
   volumes:
-   - ./app:/opt/app
+   - ./src:/opt/src
 
 db:
   image: postgres
