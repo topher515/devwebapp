@@ -24,11 +24,11 @@ var path = require('path');
 
 
 gulp.task('less', function() {
-  return gulp.src('./client/src/**/*.less')
+  return gulp.src('./app-client/src/**/*.less')
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('./client/build/css'));
+    .pipe(gulp.dest('./app-client/build/css'));
 });
 
 

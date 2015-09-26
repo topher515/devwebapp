@@ -2,16 +2,18 @@ FROM ubuntu:14.04
 
 MAINTAINER Chris Wilcox <ckwilcox@gmail.com>
 
-WORKDIR /opt/src
+WORKDIR /opt/scootme/
 
 RUN apt-get update
 RUN apt-get install -y libxslt-dev libxml2-dev
 RUN apt-get -y install python python-dev python-pip build-essential git
 # RUN apt-get -y install curl
 
+ADD requirements.txt app-server/requirements.txt
+
 # Web app
-RUN pip install Flask sqlalchemy
+RUN pip install -r app-server/requirements.txt
 
-VOLUME ["/opt/src"]
+WORKDIR /opt/scootme/app-server/scootme/
 
-EXPOSE 8000 8080
+CMD python serve.py
