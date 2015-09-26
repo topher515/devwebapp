@@ -1,0 +1,34 @@
+asset-pipeline:
+  build: asset-pipeline
+  volumes:
+   - "./client:/opt/devwebapp/client"
+
+build:
+  build: build
+
+
+
+# dev-watch-assets:
+#   build: asset-pipeline
+#   cmd: gulp watch
+
+# dev-watch-js-assets:
+#   build: asset-pipeline
+#   cmd: browserify blah
+
+# dev-app
+
+# dev-db
+
+# dev-db-2
+
+
+
+
+
+
+# build:
+#   build: build
+#   cmd: blah
+
+

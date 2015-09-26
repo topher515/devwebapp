@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "author": "Chris Wilcox",
+  "scripts":{
+  	"browserify": "browserify client/src/main.js -o client/build/js/bundle.js",
+  	"start": "npm run browserify & npm run less",
+  	"less": "gulp less"
+  },
+  "devDependencies": {
+    "del": "2.0.2",
+    "browserify":"11.2.0",
+    "gulp": "3.9.0",
+    "gulp-less":"3.0.3",
+    "vinyl-transform":"1.0.0"
+  }
+}
