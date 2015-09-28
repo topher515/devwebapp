@@ -20,3 +20,7 @@ ADD requirements.txt requirements.txt
 
 # Web app
 RUN pip install -r requirements.txt
+
+ADD setup.py setup.py
+
+RUN python setup.py develop

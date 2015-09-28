@@ -14,7 +14,7 @@ fileConfig(config.config_file_name)
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from models import Base
+from scootme.models import Base
 target_metadata = Base.metadata
 # target_metadata = None
 
@@ -22,6 +22,8 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+db_url = 'postgresql://postgres:%s@db_1:5432' % environ['POSTGRES_PASSWORD']
 
 
 def run_migrations_offline():
@@ -36,9 +38,10 @@ def run_migrations_offline():
     script output.
 
     """
-    url = config.get_main_option("sqlalchemy.url")
+    #url = config.get_main_option("sqlalchemy.url")
     #sqlalchemy.url = "postgresql://postgres@db_1:5432"
-    context.configure(url=url, target_metadata=target_metadata)
+    #url = db_url
+    context.configure(url=db_url, target_metadata=target_metadata)
 
     with context.begin_transaction():
         context.run_migrations()
@@ -52,7 +55,7 @@ def run_migrations_online():
 
     """
     options = config.get_section(config.config_ini_section)
-    #options['sqlalchemy.url'] = "postgresql://postgres@db_1:5432"
+    options['sqlalchemy.url'] = db_url
     engine = engine_from_config(options,
         prefix='sqlalchemy.',
         poolclass=pool.NullPool)
