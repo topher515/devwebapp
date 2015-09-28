@@ -1,0 +1,42 @@
+
+watch-assets:
+  build: asset-pipeline
+  volumes:
+  - "./app-client:/opt/devwebapp/app-client"
+  command: npm run watch
+
+app-server:
+  build: app-server
+  links:
+  - db
+  - static
+  volumes:
+  - ./app-server/scootme:/opt/devwebapp/app-server/scootme
+  command: python scootme/serve.py
+  ports:
+  - "8000:8000"
+  environment:
+    STATIC_BASE: 'http://192.168.99.100:8001'
+
+
+
+dataonly:
+  image: debian:wheezy
+  volumes:
+  - /var/lib/postgresql/data/                     # Persistent database data
+  command: echo "Data only container"
+
+db:
+  image: postgres:9.4.4
+  environment: 
+    POSTGRES_PASSWORD: fastidious
+  volumes_from:
+  - dataonly # For database persistence
+
+# Server static content
+static:
+  image: nginx
+  volumes:
+  - ./app-client/build:/usr/share/nginx/html:ro
+  ports:
+  - "8001:80"

@@ -36,8 +36,8 @@ def run_migrations_offline():
     script output.
 
     """
-    #url = config.get_main_option("sqlalchemy.url")
-    sqlalchemy.url = "postgresql://postgres@db_1:5432"
+    url = config.get_main_option("sqlalchemy.url")
+    #sqlalchemy.url = "postgresql://postgres@db_1:5432"
     context.configure(url=url, target_metadata=target_metadata)
 
     with context.begin_transaction():
@@ -52,7 +52,7 @@ def run_migrations_online():
 
     """
     options = config.get_section(config.config_ini_section)
-    options['sqlalchemy.url'] = "postgresql://postgres@db_1:5432"
+    #options['sqlalchemy.url'] = "postgresql://postgres@db_1:5432"
     engine = engine_from_config(options,
         prefix='sqlalchemy.',
         poolclass=pool.NullPool)

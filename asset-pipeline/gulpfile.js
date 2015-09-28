@@ -4,41 +4,39 @@
 
 var gulp = require('gulp');
 var less = require('gulp-less');
+var concat = require('gulp-concat');
+// var watch = require('gulp-watch');
 var path = require('path');
-// var browserify = require('browserify');
-// var transform = require('vinyl-transform');
 
 
-// gulp.task('browserify', function() {
+var LESS_SRC = '/opt/devwebapp/app-client/src/**/*.less';
+var LESS_DEST = '/opt/devwebapp/app-client/build/css/';
 
-//   var browserified = transform(function(filename) {
-//     var b = browserify(filename);
-//     return b.bundle();
-//   });
-
-//   return gulp.src(['./client/src/**/*.js'])
-//     .pipe(browserified)
-//     .pipe(gulp.dest('./client/build/js'));
-
-// });
 
 
 gulp.task('less', function() {
-  return gulp.src('./app-client/src/**/*.less')
+  return gulp.src(LESS_SRC)
     .pipe(less({
       paths: [ path.join(__dirname, 'less', 'includes') ]
     }))
-    .pipe(gulp.dest('./app-client/build/css'));
+    .pipe(concat('bundle.css'))
+    .pipe(gulp.dest(LESS_DEST));
 });
 
 
-gulp.task('default', ['browserify', 'less'], function () {
+
+/* BUILD */
+
+gulp.task('build', ['less'], function () {
 
 
 });
 
+/* DEV WATCH */
 
-gulp.task('build', ['browserify','less'], function () {
+gulp.task('watch', ['build'], function () {
+
+  gulp.watch(LESS_SRC, ['less']);
 
 
 });

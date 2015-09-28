@@ -5,7 +5,7 @@ from sqlalchemy.orm.exc import NoResultFound
 from models import Location, Scooter, Watcher
 from os import environ
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 # from flask.ext.sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
@@ -14,10 +14,14 @@ engine = create_engine("postgresql://postgres@db_1:5432", echo=True)
 make_session = sessionmaker(bind=engine)
 
 
-@app.route("/")
+@app.route("/hello-world")
 def hello():
     return "Hello World!"
 
+
+@app.route("/")
+def index():
+    return render_template('index.html', name='foobar', STATIC_BASE=environ['STATIC_BASE'])
 
 @app.route("/v1/scooters")
 def get_scooters():
