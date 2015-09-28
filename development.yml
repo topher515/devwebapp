@@ -1,6 +1,6 @@
 
 # Compile css, js assets
-watch-assets:
+asset-watcher:
   build: asset-pipeline
   volumes:
   - "./app-client:/opt/devwebapp/app-client"

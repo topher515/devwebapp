@@ -1,7 +1,0 @@
-(function() {
-
-  // Testing
-  var app = {};
-
-
-}());

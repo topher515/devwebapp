@@ -4,11 +4,11 @@
   "scripts":{
 
     "build": "npm run browserify & npm run gulp",
-  	"browserify": "browserify /opt/devwebapp/app-client/src/main.js -o /opt/devwebapp/app-client/build/js/bundle.js",
+  	"browserify": "browserify /opt/devwebapp/app-client/src/js/main.js -o /opt/devwebapp/app-client/build/js/bundle.js",
     "gulp": "gulp build",
 
   	"watch": "npm run watchify & npm run gulp-watch",
-    "watchify": "watchify /opt/devwebapp/app-client/src/main.js -o /opt/devwebapp/app-client/build/js/bundle.js -v",
+    "watchify": "watchify /opt/devwebapp/app-client/src/js/main.js -o /opt/devwebapp/app-client/build/js/bundle.js -v",
     "gulp-watch": "gulp watch"
   },
   "devDependencies": {
