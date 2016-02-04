@@ -1,0 +1,1 @@
+docker-compose -f development.yml run assetwatcher bash -c "cd /opt/devwebapp/app-client/src/js/ && bash"

@@ -4,8 +4,4 @@ MAINTAINER Chris Wilcox <ckwilcox@gmail.com>
 
 WORKDIR /opt/devwebapp/asset-pipeline/
 
-ADD package.json ./
-
-RUN npm install
-
-ADD gulpfile.js ./
+RUN npm install --no-bin-links -g bower 

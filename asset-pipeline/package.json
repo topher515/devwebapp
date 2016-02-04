@@ -19,6 +19,7 @@
     "gulp-concat":"2.6.0",
     "gulp-watch":"4.3.5",
     "vinyl-transform":"1.0.0",
-    "watchify": "3.2.1"
+    "watchify": "3.2.1",
+    "bower": "1.7.7"
   }
 }

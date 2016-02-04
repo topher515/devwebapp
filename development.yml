@@ -1,38 +1,54 @@
 
 # Compile css, js assets
-asset-watcher:
+assetwatcher:
   build: asset-pipeline
   volumes:
-  - "./app-client:/opt/devwebapp/app-client"
+  - "./app-client:/opt/devwebapp/app-client"  # For building
+  - "./asset-pipeline:/opt/devwebapp/asset-pipeline"
   command: npm run watch
+  dns: 8.8.8.8
 
 # Development server
-app-server:
-  build: app-server
+# devappserver:
+#   build: app-server-py
+#   links:
+#   - db
+#   - static
+#   volumes:
+#   - ./app-server-py/scootme:/opt/devwebapp/app-server-py/scootme
+#   command: python scootme/serve.py
+#   ports:
+#   - "8000:8000"
+#   environment:
+#     STATIC_BASE: 'http://192.168.99.100:8001'
+
+# Development server
+devappserver:
+  build: app-server-js
   links:
   - db
   - static
   volumes:
-  - ./app-server/scootme:/opt/devwebapp/app-server/scootme
-  command: python scootme/serve.py
+  - ./app-server-js/app:/opt/devwebapp/app-server-js/app
+  command: node app.js
   ports:
-  - "8000:8000"
+  - '3000:3000'
   environment:
     STATIC_BASE: 'http://192.168.99.100:8001'
 
 # DB migration container
 migrator:
-  build: app-server
+  build: app-server-py
   links:
   - db
   volumes:
-  - ./app-server/scootme:/opt/devwebapp/app-server/scootme
+  - ./app-server-py/scootme:/opt/devwebapp/app-serve-py/scootme
   environment: 
     POSTGRES_PASSWORD: fastidious
   command: echo "Migrate only container (run manually to migrate)"
 
 # Data container for DB
-dataonly:
+db_dataonly:
   image: debian:wheezy
   volumes:
   - /var/lib/postgresql/data/                     # Persistent database data
@@ -44,7 +60,7 @@ db:
   environment: 
     POSTGRES_PASSWORD: fastidious
   volumes_from:
-  - dataonly # For database persistence
+  - db_dataonly # For database persistence
 
 # Static content server
 static:

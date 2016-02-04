@@ -1,0 +1,22 @@
+{
+  "name": "app",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Chris Wilcox"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.2.1"
+  }
+}

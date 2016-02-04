@@ -1,0 +1,1 @@
+docker-compose -f development.yml run assetwatcher npm install --no-bin-links
